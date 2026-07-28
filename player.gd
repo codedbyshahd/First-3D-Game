@@ -23,6 +23,9 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
+		$AnimationPlayer.speed_scale = 4
+	else:
+		$AnimationPlayer.speed_scale = 1
 		
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
@@ -39,10 +42,12 @@ func _physics_process(delta: float) -> void:
 			continue
 		if collision.get_collider().is_in_group("mob"):
 			var mob = collision.get_collider()
-			if Vector3.UP.dot(collision.get_normal()) > 0.1:
+			if Vector3.UP.dot(collision.get_normal()) > 0.7:
 				mob.squash()
 				target_velocity.y = bounce_impulse
 				break
+	
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 		
 	velocity = target_velocity
 	move_and_slide()
