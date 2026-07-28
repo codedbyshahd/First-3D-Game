@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2wap0283yk0r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(60, 2, 60)
 
 [node name="Main" type="Node" unique_id=802918317]
 
@@ -8,3 +9,5 @@
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=652813799]
 shape = SubResource("BoxShape3D_7dm0k")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Ground" unique_id=1270039428]
